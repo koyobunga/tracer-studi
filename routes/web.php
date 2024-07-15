@@ -23,5 +23,6 @@ Route::middleware(Admin::class)->group(function(){
 
 Route::middleware(Alumni::class)->group(function(){
     Route::get('alumni', [PenggunaController::class, 'index']);
+    Route::get('alumni/profile', [PenggunaController::class, 'profile']);
     Route::get('alumni/signout', [LoginController::class, 'signout']);
 });

@@ -47,4 +47,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $with = ['alumni'];
+
+    /**
+     * Get the alumni that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function alumni()
+    {
+        return $this->belongsTo(Alumni::class);
+    }
 }
