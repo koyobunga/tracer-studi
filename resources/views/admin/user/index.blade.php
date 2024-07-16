@@ -17,7 +17,6 @@
                             <th>Nama</th>
                             <th>Username</th>
                             <th>Level</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody style="font-size: 14px">
@@ -27,19 +26,7 @@
                                 <td>{{ $h->name }}</td>
                                 <td>{{ $h->username }}</td>
                                 <td>{{ $h->level }}</td>
-                                <td class="d-flex">
-                                    <a href="{{ url('admin/user/'.$h->id.'/edit') }}" class="btn btn-sm btn-outline-info mr-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit berita">
-                                        <i class="mdi mdi-file-document-edit-outline"></i>
-                                    </a>
-                                    @if(Auth::user()->id != $h->id)
-                                    {{-- <form action="{{ url('admin/users/'. $h->id) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" onclick="return confirm('Hapus data ini?')"
-                                            class="btn btn-sm btn-outline-danger"><i class="mdi mdi-trash-can-outline"></i></button>
-                                    </form> --}}
-                                    @endif
-                                </td>
+                                
                             </tr>
                         @endforeach
                     </tbody>

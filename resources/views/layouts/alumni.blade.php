@@ -1,9 +1,16 @@
+@php
+    use App\Models\Pesan;
+    $id = Auth::user()->alumni->id;
+    $hit = Pesan::where('penerima', $id)->where('sts', 0)->get();
+    // dd($data->count())
+@endphp
+
 <!doctype html>
 <html lang="en">
 
     <head>
         <meta charset="utf-8" />
-        <title>Alumni</title>
+        <title>SMAN 1 LUWUK</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
@@ -14,11 +21,15 @@
         <link href="{{ url('assets/alumni/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
         <link href="{{ url('assets/alumni/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        
+       
         <!-- App Css-->
         <link href="{{ url('assets/alumni/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
 
         <link href="{{ url('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+
+
     </head>
 
     <body data-topbar="dark" data-layout="horizontal">
@@ -34,23 +45,26 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{{ url('alumni') }}" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="{{ url('img/logo.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="{{ url('img/logo.png') }}" alt="" height="30">
                                 </span>
+                                
                             </a>
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="{{ url('alumni') }}" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="{{ url('img/logo.png') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="{{ url('img/logo.png') }}" alt="" height="30">
                                 </span>
+                                
                             </a>
+                            
                         </div>
 
                         <button type="button" class="btn btn-sm mr-2 font-size-24 d-lg-none header-item waves-effect waves-light" data-toggle="collapse" data-target="#topnav-menu-content">
@@ -59,8 +73,9 @@
            
                     </div>
 
-                     {{-- <!-- Search input -->
-                     <div class="search-wrap" id="search-wrap">
+                    <div class="text-white h5 mt-3 w-100 text-left">SMAN 1 LUWUK</div>
+                     <!-- Search input -->
+                     {{-- <div class="search-wrap" id="search-wrap">
                         <div class="search-bar">
                             <input class="search-input form-control" placeholder="Search" />
                             <a href="#" class="close-search toggle-search" data-target="#search-wrap">
@@ -70,7 +85,7 @@
                     </div> --}}
 
                     <div class="d-flex">
-
+                        
                         {{-- <div class="dropdown d-none d-lg-inline-block mr-2">
                             <button type="button" class="btn header-item toggle-search noti-icon waves-effect" data-target="#search-wrap">
                                 <i class="mdi mdi-magnify"></i>
@@ -85,55 +100,31 @@
 
 
                         <div class="dropdown d-inline-block mr-2">
-                            <button type="button" class="btn header-item noti-icon pr-5 waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ion ion-md-notifications"></i>
-                                <span class="badge badge-danger badge-pill">3</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
-                                <div class="p-3">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h5 class="m-0 font-size-16"> Notification (3) </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-simplebar style="max-height: 230px;">
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                    <i class="mdi mdi-cart-outline"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 font-size-15 mb-1">Your order is placed</h6>
-                                                <div class="font-size-12 text-muted">
-                                                    <p class="mb-1">Dummy text of the printing and typesetting industry.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                  
-                                </div>
-                                <div class="p-2 border-top">
-                                    <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
-                                        View all
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="{{ url('alumni/pesan') }}" type="button" class="btn header-item noti-icon pr-5 pt-4 waves-effect" id="page-header-notifications-dropdown"  aria-haspopup="true" aria-expanded="false">
+                                <i class="ion ion-md-chatboxes"></i>
+                                @if($hit->count()>0)
+                                <span class="badge badge-danger badge-pill">{{ $hit->count() }}</span>
+                                @endif
+                            </a>
+                            
                         </div>
 
+                        {{-- <div class="pt-4 no-wrap text-white ">{{ Auth::user()->alumni->nama }}</div> --}}
             
-                        <div class="dropdown d-inline-block">
+                        <div class="dropdown d-inline-block mt-2">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="{{ url('assets/alumni/images/users/avatar-2.jpg') }}" alt="Header Avatar">
+                                @if(Auth::user()->alumni->foto)
+                                    <img class="rounded-circle header-profile-user" src="{{ url('img/alumni/'.Auth::user()->alumni->foto) }}" alt="Header Avatar">
+                                @else
+                                    <img class="rounded-circle header-profile-user" src="{{ url('assets/alumni/images/users/avatar-1.jpg') }}" alt="Header Avatar">
+                                @endif
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Foto Profile</a>
-                                <a class="dropdown-item d-block" href="#"><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Ubah Password</a>
+                                <a class="dropdown-item" href="{{ url('alumni/profile') }}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
+                                {{-- <a class="dropdown-item d-block" href="#"><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Ubah Password</a> --}}
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="{{ url('alumni.signout') }}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" href="{{ url('alumni/signout') }}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                             </div>
                         </div>
 
@@ -151,7 +142,7 @@
                                 <ul class="navbar-nav">
 
                                     <li class="nav-item">
-                                        <a class="nav-link dropdown-toggle" href="#" id="topnav-dashboard" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="{{ url('alumni') }}" id="topnav-dashboard" role="button" aria-haspopup="true" aria-expanded="false">
                                             <i class="mdi mdi-view-dashboard mr-2"></i>Dashboard 
                                         </a>
                                     
@@ -161,21 +152,15 @@
                                     <li class="nav-item ">
                                         <a class="nav-link dropdown-toggle arrow-none" href="{{ url('alumni/profile') }}" id="topnav-ui kit" role="button"
                                           aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-buffer mr-2"></i>Profile Saya
+                                            <i class="mdi mdi-face-profile mr-2"></i>Profile Saya
                                         </a>
 
                                     </li>
     
-                                    <li class="nav-item ">
-                                        <a class="nav-link dropdown-toggle" href="#" id="topnav-components" role="button"
-                                           aria-haspopup="true" aria-expanded="false">
-                                            <i class="mdi mdi-cube-outline mr-2"></i>Cari Alumni 
-                                        </a>
-                                    </li>
-
- 
-    
+                                  
+                                    
                                 </ul>
+                                <div class="ml-auto text-white text-right">{{ Auth::user()->alumni->nama }}</div>
                             </div>
                         </nav>
                     </div>
@@ -247,13 +232,17 @@
         <script src="{{ url('assets/alumni/libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ url('assets/alumni/libs/node-waves/waves.min.js') }}"></script>
 
-        <script src="{{ url('assets/alumni/js/app.js') }}"></script>
-
+        
         {{-- Alertify --}}
         <script src="{{url('assets/admin/libs/alertify.js/js/alertify.js')}}"></script>
         <script src="{{url('assets/admin/js/pages/alertify-init.js')}}"></script>
 
         <script src="{{ url('assets/js/jquery.dataTables.min.js') }}"></script>
+        
+
+        
+        <script src="{{ url('assets/alumni/js/app.js') }}"></script>
+
         <script>
         $(document).ready(function(){
             $("#tabel_user").DataTable();

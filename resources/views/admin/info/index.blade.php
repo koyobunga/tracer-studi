@@ -24,7 +24,7 @@
                                 </td>
                                 <td>
                                     <h6 class="mt-0 mb-1">{{ $b->label }}</h6>
-                                    <p class="m-0 ">{!! Str::limit($b->desc, 200, '...'); !!}</p>
+                                    <p class="m-0 ">{!! Str::limit($b->ket, 200, '...'); !!}</p>
                                 </td>
                                 <td class="d-flex">
                                     <a href="{{ url('admin/info/'.$b->id.'/edit') }}" class="btn btn-sm btn-info mr-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit info">

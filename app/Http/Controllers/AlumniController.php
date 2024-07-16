@@ -37,11 +37,12 @@ class AlumniController extends Controller
         $valid = $request->validate([
             'nis' => 'required|unique:alumnis',
             'nama' => 'required',
-            'alamat' => 'required',
+            'alamat' => 'nullable',
+            'kontak' => 'nullable',
+            'kelamin' => 'required',
             'jurusan' => 'required',
             'masuk' => 'required|date',
             'selesai' => 'required|date',
-            'kontak' => 'required',
         ]);
 
         if(Alumni::create($valid)){
@@ -89,11 +90,12 @@ class AlumniController extends Controller
         $valid = $request->validate([
             'nis' => 'required',
             'nama' => 'required',
-            'alamat' => 'required',
+            'alamat' => 'nullable',
+            'kontak' => 'nullable',
+            'kelamin' => 'required',
             'jurusan' => 'required',
             'masuk' => 'required|date',
             'selesai' => 'required|date',
-            'kontak' => 'required',
         ]);
 
         if($request->foto){

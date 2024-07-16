@@ -14,6 +14,7 @@
                         <th>#</th>
                         <th>NIS</th>
                         <th>Nama</th>
+                        <th>Kelamin</th>
                         <th>Alamat</th>
                         <th>Jurusan</th>
                         <th>Masuk</th>
@@ -28,6 +29,7 @@
                                 <td>{{ $loop->iteration}}</td>
                                 <td>{{$b->nis}}</td>
                                 <td>{{$b->nama}}</td>
+                                <td>{{$b->kelamin}}</td>
                                 <td>{{$b->alamat}}</td>
                                 <td>{{$b->jurusan}}</td>
                                 <td>{{$b->masuk}}</td>

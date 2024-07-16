@@ -11,4 +11,13 @@ class Alumni extends Model
     protected $guarded = ['id'];
 
 
+    /**
+     * Get all of the riwayat for the Alumni
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function riwayat()
+    {
+        return $this->hasMany(Riwayat::class);
+    }
 }

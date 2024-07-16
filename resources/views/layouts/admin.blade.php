@@ -136,7 +136,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item" href="{{ url('admin/users')}}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Ubah Password</a>
+                                {{-- <a class="dropdown-item" href="{{ url('admin/users')}}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Ubah Password</a> --}}
                                 {{-- <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a> --}}
                                           <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-danger" href="{{ url('admin/signout')}}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
@@ -162,7 +162,7 @@
 
 
                             <li>
-                                <a href="javascript: void(0);" class="waves-effect">
+                                <a href="{{ url('admin') }}" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i>
                                     <span> Dashboard </span>
                                 </a>
@@ -284,13 +284,13 @@
         <script src="{{ url('assets/js/jquery.dataTables.min.js') }}"></script>
         <script>
         $(document).ready(function(){
-            $("#tabel_user").DataTable();
-            $("#tabel_berita").DataTable();
-            // $("#tabel_berita").DataTable({
-            //     searching: false,
-            //     paging: false,
-            //     order: false
-            // });
+            // $("#tabel_user").DataTable();
+            $("#data").DataTable();
+            $("#tabel_alumni").DataTable({
+                // searching: false,
+                paging: false,
+                order: false
+            });
         })
         </script>
 

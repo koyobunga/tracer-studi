@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('alumni_id');
             $table->string('status');
             $table->string('instansi');
-            $table->string('bidang');
+            $table->text('bidang');
             $table->date('mulai');
             $table->timestamps();
         });

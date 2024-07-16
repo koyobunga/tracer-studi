@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('pesans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('alumni_id');
+            $table->integer('pengirim');
+            $table->integer('penerima');
             $table->text('ket');
+            $table->string('sts')->default(0);
             $table->timestamps();
         });
     }

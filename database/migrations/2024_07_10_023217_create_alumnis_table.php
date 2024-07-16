@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('nis')->unique();
             $table->string('nama');
-            $table->string('alamat');
+            $table->string('kelamin');
+            $table->string('alamat')->nullable();
             $table->string('jurusan');
             $table->date('masuk');
             $table->date('selesai');
-            $table->string('kontak');
+            $table->string('kontak')->nullable();
             $table->string('foto')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

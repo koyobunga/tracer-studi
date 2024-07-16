@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Riwayat;
 use App\Http\Requests\StoreRiwayatRequest;
 use App\Http\Requests\UpdateRiwayatRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use function PHPUnit\Framework\returnSelf;
 
 class RiwayatController extends Controller
 {
@@ -27,9 +31,20 @@ class RiwayatController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRiwayatRequest $request)
+    public function store(Request $request)
     {
-        //
+        $valid = $request->validate([
+            'status' => 'required',
+            'instansi' => 'required',
+            'bidang' => 'required',
+            'mulai' => 'date',
+        ]);
+
+        $valid['alumni_id'] = Auth::user()->alumni_id;
+        if(Riwayat::create($valid))
+            return back()->with('success', 'Berhasil memnyimpan..');
+            return back()->with('error', 'Gagal memnyimpan..');
+
     }
 
     /**

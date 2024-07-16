@@ -26,9 +26,21 @@
                     </div>
                   @enderror
                 </div>
+                <div class="mb-2">
+                  <label for="exampleInputEmail1" class="form-label">Jenis Kelamin</label>
+                  <select required name="kelamin" type="text" class="form-control @error('kelamin') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <option @if(old('kelamin') == 'Pria') selected @endif value="Pria">Pria</option>
+                      <option @if(old('kelamin') == 'Wanita') selected @endif value="Wanita">Wanita</option>
+                  </select>
+                  @error('kelamin')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                  @enderror
+                </div>
               <div class="mb-2">
                   <label for="exampleInputEmail1" class="form-label">Alamat</label>
-                  <input required name="alamat" value="{{ old('alamat', $data->alamat)}}" type="text" class="form-control @error('alamat') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input  name="alamat" value="{{ old('alamat', $data->alamat)}}" type="text" class="form-control @error('alamat') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
                   @error('alamat')
                     <div class="invalid-feedback">
                         {{ $message}}
@@ -67,7 +79,7 @@
                 </div>
                 <div class="mb-2">
                   <label for="exampleInputEmail1" class="form-label">Kontak</label>
-                  <input required name="kontak" value="{{ old('kontak', $data->kontak)}}" type="number" class="form-control @error('kontak') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input  name="kontak" value="{{ old('kontak', $data->kontak)}}" type="number" class="form-control @error('kontak') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
                   @error('kontak')
                     <div class="invalid-feedback">
                         {{ $message}}
